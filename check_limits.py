@@ -1,15 +1,21 @@
 def battery_is_ok(temperature, soc, charge_rate):
-  if temperature < 0 or temperature > 45:
-    print('Temperature is out of range!')
-    return False
-  if soc < 20 or soc > 80:
-    print('State of Charge is out of range!')
-    return False
-  if charge_rate > 0.8:
-    print('Charge rate is out of range!')
-    return False
-
-  return True
+    error_messages = []
+    
+    if temperature < 0 or temperature > 45:
+        error_messages.append('Temperature is out of range!')
+    
+    if soc < 20 or soc > 80:
+        error_messages.append('State of Charge is out of range!')
+    
+    if charge_rate > 0.8:
+        error_messages.append('Charge rate is out of range!')
+    
+    if error_messages:
+        for error in error_messages:
+            print(error)
+        return False
+    
+    return True
 
 
 if __name__ == '__main__':
