@@ -1,16 +1,16 @@
 def battery_is_ok(temperature, soc, charge_rate):
-    conditions = {
-        (temperature < 0 or temperature > 45): 'Temperature is out of range!',
-        (soc < 20 or soc > 80): 'State of Charge is out of range!',
-        (charge_rate > 0.8): 'Charge rate is out of range!'
-    }
+    temperature_ok = 0 <= temperature <= 45
+    soc_ok = 20 <= soc <= 80
+    charge_rate_ok = charge_rate <= 0.8
     
-    for condition, error_message in conditions.items():
-        if condition:
-            print(error_message)
-            return False
+    if not temperature_ok:
+        print('Temperature is out of range!')
+    if not soc_ok:
+        print('State of Charge is out of range!')
+    if not charge_rate_ok:
+        print('Charge rate is out of range!')
     
-    return True
+    return temperature_ok and soc_ok and charge_rate_ok
 
 if __name__ == '__main__':
   assert(battery_is_ok(25, 70, 0.7) is True)
