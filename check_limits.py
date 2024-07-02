@@ -19,7 +19,7 @@ def charge_rate_checker(cr):
   return True
 
 def battery_is_ok(temperature, soc, charge_rate):
-  return (temp_checker and soc_checker and charge_rate_checker)
+  return (temp_checker(temperature) and soc_checker(soc) and charge_rate_checker(charge_rate))
 
 if __name__ == '__main__':
   assert(battery_is_ok(25, 70, 0.7) is True)
