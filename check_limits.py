@@ -79,16 +79,15 @@ def charge_rate_checker(cr,warn_param = None):
   return cr_result
 
 def battery_is_ok(temperature, soc, charge_rate,warn_parameter=None):
-  if warn_parameter!=None:
-    if warn_parameter == 'SOC':
-      soc_result, warn_message = soc_checker(soc,warn_parameter)
-      return ((temp_checker(temperature) and soc_result and charge_rate_checker(charge_rate)),warn_message)
-    if warn_parameter == 'Temperature':
-      temp_result,warn_message = temp_checker(temperature,warn_parameter)
-      return ((temp_result and soc_checker(soc) and charge_rate_checker(charge_rate)),warn_message)
-    if warn_parameter == 'Charge Rate':
-      cr_result,warn_message = charge_rate_checker(charge_rate,warn_parameter)
-      return ((temp_checker(temperature) and soc_checker(soc) and cr_result),warn_message)
+  if warn_parameter == 'SOC':
+    soc_result, warn_message = soc_checker(soc,warn_parameter)
+    return ((temp_checker(temperature) and soc_result and charge_rate_checker(charge_rate)),warn_message)
+  if warn_parameter == 'Temperature':
+    temp_result,warn_message = temp_checker(temperature,warn_parameter)
+    return ((temp_result and soc_checker(soc) and charge_rate_checker(charge_rate)),warn_message)
+  if warn_parameter == 'Charge Rate':
+    cr_result,warn_message = charge_rate_checker(charge_rate,warn_parameter)
+    return ((temp_checker(temperature) and soc_checker(soc) and cr_result),warn_message)
   return ((temp_checker(temperature) and soc_checker(soc) and charge_rate_checker(charge_rate)))
 
 import unittest
