@@ -17,8 +17,9 @@ parameter_dict = {'Temperature' : {
                             HIGH_SOC_WARNING_LIMIT: 'HIGH_SOC_WARNING',
                           },
                   'Charge Rate' : {
-                            HIGH_CHARGERATE_LIMIT : 'Charge rate out of range',
+                            HIGH_CHARGERATE_LIMIT: 'Normal',
                             HIGH_CHARGERATE_WARNING_LIMIT: 'HIGH_Charge_Rate_WARNING',
+                            
                           }
                   }
 def parameter_range_selector(parameter):
@@ -30,11 +31,11 @@ def parameter_range_selector(parameter):
 def warning_level_selector(parameter_warning_limit,parameter_value):
   low_limit_value,low_warning_message = list(parameter_warning_limit.items())[0]
   high_limit_value,high_warning_message = list(parameter_warning_limit.items())[1]
-
-  if parameter_value <= low_limit_value:
-    return low_warning_message
-  elif parameter_value >= high_limit_value:
+  print(low_limit_value)
+  if parameter_value >= high_limit_value:
     return high_warning_message
+  elif parameter_value <= low_limit_value:
+    return low_warning_message
 
 def temp_checker(temp,warn_param = None):
   t = range(0,45)
@@ -66,17 +67,15 @@ def soc_checker(soc, warn_param = None):
   
 def charge_rate_checker(cr,warn_param = None):
   if cr > 0.8:
-    print("Charge Rate out of range")
+    print("Charge Rate out of Range")
     cr_result = False
     return cr_result
   cr_result = True
-  if warn_param !=None:
-    if cr > HIGH_CHARGERATE_WARNING_LIMIT:
-      warning_message = 'HIGH_Charge_Rate_WARNING'
-      cr_result = (cr_result,warning_message)
-    elif cr < HIGH_CHARGERATE_WARNING_LIMIT:
-      warning_message = 'Normal'
-      cr_result = (cr_result,warning_message)
+  if warn_param != None:
+    parameter_limit = parameter_range_selector('Charge Rate')
+    warning_message = warning_level_selector(parameter_limit,cr)
+    cr_warn_result = (cr_result,warning_message)
+    return cr_warn_result
   return cr_result
 
 def battery_is_ok(temperature, soc, charge_rate,warn_parameter=None):
