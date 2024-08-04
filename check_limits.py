@@ -26,11 +26,10 @@ parameter_dict = {'Temperature' : {
                           }
                   }
 def parameter_range_selector(warn_name,warn_param):
-  for item in parameter_dict:
-    if item == warn_param and parameter_dict[item]['PARAM_NAME'] == warn_name:
-      parameter_warning_limit = parameter_dict[item]
+    if parameter_dict[warn_param]['PARAM_NAME'] == warn_name:
+      parameter_warning_limit = parameter_dict[warn_param]
       return parameter_warning_limit
-  return None
+    return None
     
 def warning_level_selector(parameter_warning_limit,parameter_value):
   low_limit_value,low_warning_message = list(parameter_warning_limit.items())[1]
