@@ -1,6 +1,6 @@
-from temperature import temp_checker
-from state_of_charge import soc_checker
-from charge_rate import charge_rate_checker
+from temperature_check import temp_checker
+from state_of_charge_check import soc_checker
+from charge_rate_check import charge_rate_checker
 
 def battery_is_ok(temperature, soc, charge_rate,warn_parameter=None):
   temp_result,temp_message = temp_checker(temperature,warn_parameter)
