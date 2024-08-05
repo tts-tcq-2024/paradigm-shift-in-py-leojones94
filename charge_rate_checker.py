@@ -1,4 +1,4 @@
-from warning_check import warn_checker
+from warning_checker import warn_checker
 
 def charge_rate_checker(charge_rate,warn_param = None):
   if charge_rate > 0.8:
