@@ -1,4 +1,4 @@
-from warning_check import warn_checker
+from warning_checker import warn_checker
 
 def temp_checker(temp,warn_param = None):
   temp_result, temp_message = warn_checker(temp,"Temperature",warn_param)
