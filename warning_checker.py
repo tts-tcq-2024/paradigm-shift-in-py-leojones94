@@ -1,4 +1,4 @@
-from parameter_range_check import parameter_range_selector,warning_level_selector
+from parameter_range_checker import parameter_range_selector,warning_level_selector
 
 def warn_checker(param_val,warn_name,warn_param):
   if warn_param != None:
