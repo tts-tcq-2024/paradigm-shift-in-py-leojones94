@@ -1,6 +1,6 @@
 import unittest
 
-from battery_is_ok import battery_is_ok 
+from battery_is_ok_checker import battery_is_ok 
 
 class TestParadigm(unittest.TestCase):
     
