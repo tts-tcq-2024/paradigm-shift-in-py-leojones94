@@ -1,4 +1,4 @@
-from warning_check import warn_checker
+from warning_checker import warn_checker
 
 def soc_checker(soc,warn_param = None):
   soc_result, soc_message = warn_checker(soc, "SOC", warn_param)
